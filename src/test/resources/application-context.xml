@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans">
+
+    <!-- Mirrors the shape the integrator uses in the fluxtion-web
+         Spring 3rd-party example: aggregator has no constructor-args
+         (its no-arg ctor drags in the three collectors via field
+         references), all downstream consumers reference the shared
+         aggregator. -->
+
+    <bean id="aggregator" class="com.acme.metrics.MetricsAggregator"/>
+
+    <bean id="averager" class="com.acme.metrics.WindowedAverager">
+        <constructor-arg ref="aggregator"/>
+    </bean>
+
+    <bean id="alerter" class="com.acme.metrics.ThresholdAlerter">
+        <constructor-arg ref="aggregator"/>
+    </bean>
+
+    <bean id="publisher" class="com.acme.metrics.MetricsPublisher">
+        <constructor-arg ref="aggregator"/>
+        <constructor-arg ref="averager"/>
+    </bean>
+
+    <bean id="alertPublisher" class="com.acme.metrics.AlertPublisher">
+        <constructor-arg ref="alerter"/>
+    </bean>
+
+</beans>

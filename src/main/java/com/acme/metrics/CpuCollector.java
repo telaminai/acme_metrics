@@ -2,18 +2,18 @@ package com.acme.metrics;
 
 import com.telamin.fluxtion.runtime.annotations.OnEventHandler;
 
-public class MetricsCollector {
+public class CpuCollector {
 
     private int count;
-    private int lastValue;
+    private int lastPercent;
 
     @OnEventHandler
-    public boolean onMetric(MetricEvent event) {
+    public boolean onCpu(CpuMetric e) {
         count++;
-        lastValue = event.getValue();
+        lastPercent = e.getPercent();
         return true;
     }
 
     public int getCount() { return count; }
-    public int getLastValue() { return lastValue; }
+    public int getLastPercent() { return lastPercent; }
 }
