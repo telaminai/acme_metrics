@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.acme.metrics</groupId>
+    <artifactId>metrics-nodes</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>metrics-nodes</name>
+    <description>
+        Sample third-party Fluxtion node library — collector, aggregator,
+        publisher + event type. Ships as a plain jar with no Spring or
+        other transitive runtime dependencies. fluxtion-runtime is
+        provided-scope: the browser playground (and any real consumer)
+        already has it on the classpath, so we don't bundle it.
+    </description>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <fluxtion.version>0.9.33-SNAPSHOT</fluxtion.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.telamin.fluxtion</groupId>
+            <artifactId>fluxtion-runtime</artifactId>
+            <version>${fluxtion.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>
