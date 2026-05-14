@@ -26,19 +26,16 @@
 
     <dependencies>
         <!--
-          Compile against fluxtion-runtime-java8 so this library's
-          bytecode references agrona 1.21.2 method signatures (matching
-          what the playground / CheerpJ Java 8 mode resolves at runtime).
-          fluxtion-runtime-java8 ships identical fluxtion-runtime source,
-          just shaded against agrona 1.x instead of 2.x; the runtime
-          public API is the same, so this is a transparent swap for
-          consumers. Switched 2026-05-14 to fix NoSuchMethodError in the
-          fluxtion-spring-third-party playground example after the
-          fluxtion 1.0 runtime split.
+          fluxtion-runtime (unshaded from fluxtion 1.0): agrona is a regular
+          transitive (default 2.x). Bytecode references the standard
+          org.agrona.* package, which is binary-compatible across the agrona
+          surface fluxtion-runtime touches. CheerpJ consumers of this jar
+          get agrona 1.21.2 via the playground's classpath; server consumers
+          get the default 2.x. No version coupling needed in this pom.
         -->
         <dependency>
             <groupId>com.telamin.fluxtion</groupId>
-            <artifactId>fluxtion-runtime-java8</artifactId>
+            <artifactId>fluxtion-runtime</artifactId>
             <version>${fluxtion.version}</version>
             <scope>provided</scope>
         </dependency>
